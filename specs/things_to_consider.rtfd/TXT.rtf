@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;\f2\fswiss\fcharset0 ArialMT;
+}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red16\green16\blue16;\red33\green28\blue121;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 Things to consider:\
+\pard\pardeftab720\sa240
+
+\f1 \cf0 "Other two severe limitations of more traditional RSs are: the lack to support sequential consumption of items, and the difficulty to exploit implicit evaluation feedback on items. Regarding the first point, one can observe that users of- ten listen to sequences of tracks during a listening session (playlists), and their preferences at a certain point in time are influenced by the tracks previously listened to. Therefore recommending a sequence of items defines a different prob- lem than recommending individual items. Sequential items selection problems are not found in music applications only. For instance, after having read certain books, one decides what books to read next. These decisions are influenced by what has been read before, the background knowledge of a person, and what is available and preferred at the time the decision is made."\
+\pard\pardeftab720\sa240
+
+\f0\b\fs48 \cf0 Optimal Radio Channel Recommendations with Explicit and Implicit Feedback
+\f1\b0\fs24 \
+\
+\
+\pard\pardeftab720\sa240
+
+\fs30 \cf0 One of the most significant differences between ex- plicit and implicit feedback datasets is the distribu- tion of ratings. In an explicit setting, the average user only rates a reasonably small subset of prod- ucts, and the ratings are not heavily skewed towards one end or the other. This is in contrast to implicit music datasets and ratings derived from play fre- quencies, where most artists have a rating close to 0 - a consequ
+\fs24 \
+\pard\pardeftab720\sa240
+
+\b\fs38 \cf0 A Matrix Factorization Algorithm for Music Recommendation using Implicit User Feedback
+\b0\fs24 \
+\pard\pardeftab720\sa240
+
+\fs30 \cf0 We define play fre- quency freq for a given user i and artist j to be the user\'92s play count for that artist normalized by user\'92s total plays:
+\fs24 \
+\
+\
+\pard\pardeftab720
+
+\f2 \cf2 Current solutions for providing content recommendations, like TVgids.nl and movielens.com make use of explicit content ratings. Here users provide ratings for TV programs and movies after they watched an item. Using these ratings, the recommender system can calcultate personalised content recommendations. However, in practice this does not work. It requires user effort to explicitly rate content, which makes that they do not provide this feedback . Also, negatively-rated content is usually quickly skipped, whithout providing any feedback. This is the reason why YouTube moved to an implicit content rating system for its videos early 2012. An implicit rating system deduces user ratings from the user watching behaviour. If a user watches a program or video as a whole, he probably liked it. If a user leaves after a few seconds or minutes, he probably did not like it.\uc0\u8232 \u8232 Your assignment will be to develop implicit content ratings in a television context. First of all, you will have to get technical access to a television clicksteam. Secondly, you have to detect who is watching the TV, as a typical household exists of more than one person. Finally, you have to make sense of the watching behaviour and translate it to implicit content ratings\
+\
+http://www.tno.nl/werkenbij/content.cfm?context=vacature&content=vacatures_view&vacnr=50156103&Taal=2\
+\
+\
+	\
+\pard\pardeftab720\sa240
+
+\f1 \cf3 3.1 User profiling from zapping behavior\cf0 \
+\cf3 We use the zapping behavior of a user to learn the user interest in the watched TV programs. The zapping behavior of all users is recorded and coupled with the EPG (Electronic Program Guide) data to generate program IDs. In the Tribler system different TV programs have different IDs. TV series that consists of a set of episodes, like \'93Friends\'94 or a general \'93news\'94 program, get one ID (all episodes get the same ID) to bring more relevance among programs.\cf0 \
+\cf3 For each user u
+\fs18 \dn4 k 
+\fs24 \up0 the interest in TV program i
+\fs18 \dn4 m 
+\fs24 \up0 can be calculated as follows:\uc0\u8232 \dn16 x
+\fs18 \dn8 m\dn24 k 
+\fs24 \dn16 1\uc0\u8260 4 \up0 WatchedLength\'f0m; k\'de \dn16 \'f01\'de\cf0 \up0 \
+\cf3 OnAirLength\'f0m\'de  freq\'f0m\'de\cf0 \
+\cf3 WatchedLength(m,k) denotes the duration that the user u
+\fs18 \dn4 k 
+\fs24 \up0 has watched program i
+\fs18 \dn4 m 
+\fs24 \up0 in seconds. OnAirLength(m) denotes the entire duration in seconds of the program i
+\fs18 \dn4 m
+\fs24 \up0 , on air (cumulative with respect to episodes or reruns). Freq(m) denotes the number of times program i
+\fs18 \dn4 m 
+\fs24 \up0 has been broadcast (episodes are considered to be a rerun), in other words OnAirLength(m)/freq(m) is the average duration of a \'91single\'92 broadcast, e.g., average\cf0  \cf3 duration of an episode. This normalization with respect to the number of times a program has been broadcast is taken into consideration since programs that are frequently broadcast also have more chance that a user gets to watch it.\cf0 \
+\cf3 Experiments (see Fig. \cf4 10\cf3 ) showed that, due to the frequent zapping behaviors of users, a large number of x
+\fs18 \up8 m\dn8 k 
+\fs24 \up0 \'92s have very small values (zapping along channels). It is necessary to filter out those small valued x
+\fs18 \up8 m\dn8 k 
+\fs24 \up0 \'92s in order to: (1) reduce the amounts of user interest profiles that need to be exchanged, and (2) improve recommendation by excluding these noisy data. Therefore, the user interest values x
+\fs18 \up8 m\dn8 k 
+\fs24 \up0 are thresholded resulting in binary user interest values:\cf0 \
+\cf3 y
+\fs18 \up10 m\dn8 k 
+\fs24 \up0 1\uc0\u8260 41if x
+\fs18 \up10 m\dn8 k 
+\fs24 \up0 >T andy
+\fs18 \up10 m\dn8 k 
+\fs24 \up0 1\uc0\u8260 40otherwise \'f02\'de Consequently, y
+\fs18 \up8 m 
+\fs24 \up0 indicates whether user u likes program i \up20 \up0 y
+\fs18 \up8 m 
+\fs24 \up0 1\uc0\u8260 4 1\up20  \up0 or not \up20 \up0 y
+\fs18 \up8 m 
+\fs24 \up0 1\uc0\u8260 4 0\up20 \up0 .\cf0 \
+\pard\pardeftab720\sa240
+
+\fs18 \cf3 k\up2 km\up0 kk 
+\fs24 The optimal threshold T will be obtained through experimentation.\
+\pard\pardeftab720\sa240
+
+\fs34 \cf3 Personalization on a peer-to-peer television system
+\fs24 \cf0 \
+\
+\pard\pardeftab720
+\cf0 \
+}
